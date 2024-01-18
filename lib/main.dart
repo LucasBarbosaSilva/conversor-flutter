@@ -1,4 +1,4 @@
-import 'package:conversor_curso/src/models/views/home_view.dart';
+import 'package:conversor_curso/src/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main(List<String> args) {

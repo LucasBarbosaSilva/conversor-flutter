@@ -2,22 +2,22 @@ import 'package:conversor_curso/src/models/currency_model.dart';
 import 'package:flutter/material.dart';
 
 class HomeController {
-  late List<CurrencyModel> currencies;
+  late Map<String, CurrencyModel> currencies;
   late CurrencyModel fromCurrency;
   late CurrencyModel toCurrency;
 
-  TextEditingController fromText = TextEditingController();
-  TextEditingController toText = TextEditingController();
+  final TextEditingController fromText;
+  final TextEditingController toText;
 
-  HomeController(){
+  HomeController({required this.fromText, required this.toText}){
     currencies = CurrencyModel.getCurrencies();
-    fromCurrency = currencies[0];
-    toCurrency = currencies[1];
+    fromCurrency = currencies['Real'] as CurrencyModel;
+    toCurrency = currencies['Dolar'] as CurrencyModel;
   }
 
   void convert(){
     String text = fromText.text;
-    double value = double.tryParse(text) ?? 1.0;
+    double value = double.tryParse(text.replaceAll(",", ".")) ?? 1.0;
     double convertedValue = 0;
 
     if(toCurrency.name == "Real"){
